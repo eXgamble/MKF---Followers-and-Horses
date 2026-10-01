@@ -14,12 +14,14 @@
       "priority": 10
     },
     {
-      // in combat: heal the follower with your cheapest healing potion
+      // in combat: your cheapest healing potion, or (modifier key) your cheapest magicka or
+      // stamina potion, whichever they need most; one event, the alternate flag tells them apart
       // (downed followers are Death Timer's: its rule has a higher priority)
       "id": "followers-combat",
       "target": "npc",
       "requires": { "teammate": true, "alive": true, "inCombat": true },
-      "primary": { "label": "$MKFFH_GivePotion", "event": "MKFFH_GivePotion" },
+      "primary":   { "label": "$MKFFH_GivePotion",        "event": "MKFFH_GivePotion" },
+      "alternate": { "label": "$MKFFH_GiveRestorePotion", "event": "MKFFH_GivePotion" },
       "priority": 10
     },
     {
