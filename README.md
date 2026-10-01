@@ -30,7 +30,7 @@ actions on your followers and your own horses, with Modifier Key Framework's key
 - Optional: [FormList Manipulator](https://www.nexusmods.com/skyrimspecialedition/mods/74037)
   (CACO blood potions are recognised as vampire-only)
 
-Works alongside [Death Timer - Immersive Bleedout](https://github.com/eXgamble/Death-Timer---Immersive-Bleedout):
+Works alongside [Death Timer - Immersive Bleedout](https://www.nexusmods.com/skyrimspecialedition/mods/193403):
 a downed follower gets Death Timer's *Give Potion* / *Search*.
 
 ## Repository layout
