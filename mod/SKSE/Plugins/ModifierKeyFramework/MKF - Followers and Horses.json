@@ -14,6 +14,15 @@
       "priority": 10
     },
     {
+      // in combat: heal the follower with your cheapest healing potion
+      // (downed followers are Death Timer's: its rule has a higher priority)
+      "id": "followers-combat",
+      "target": "npc",
+      "requires": { "teammate": true, "alive": true, "inCombat": true },
+      "primary": { "label": "$MKFFH_GivePotion", "event": "MKFFH_GivePotion" },
+      "priority": 10
+    },
+    {
       "id": "horses",
       "target": "npc",
       "requires": {
