@@ -1,0 +1,30 @@
+{
+  // MKF - Followers and Horses: hold the Modifier Key Framework key to open a follower's or your
+  // own horse's inventory. Activating normally stays vanilla (Talk / Ride).
+  // Labels: Interface/Translations/MKF - Followers and Horses_<LANGUAGE>.txt
+  "version": 1,
+  "rules": [
+    {
+      "id": "followers",
+      "target": "npc",
+      "requires": { "teammate": true, "alive": true },
+      "not": { "inCombat": true },
+      "primary":   { "label": "$MKFFH_Talk" },
+      "alternate": { "label": "$MKFFH_Inventory", "event": "MKFFH_OpenInventory" },
+      "priority": 10
+    },
+    {
+      "id": "horses",
+      "target": "npc",
+      "requires": {
+        "race": "Skyrim.esm|0x131FD",     // HorseRace
+        "faction": "Skyrim.esm|0x68D78",  // PlayerHorseFaction: horses you own
+        "alive": true
+      },
+      "not": { "inCombat": true },
+      "primary":   { "label": "$MKFFH_Ride" },
+      "alternate": { "label": "$MKFFH_Inventory", "event": "MKFFH_OpenInventory" },
+      "priority": 10
+    }
+  ]
+}
