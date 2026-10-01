@@ -17,7 +17,7 @@
       "id": "horses",
       "target": "npc",
       "requires": {
-        "race": "Skyrim.esm|0x131FD",     // HorseRace
+        "keyword": "Skyrim.esm|0x26110",  // ActorTypeHorse (on the race: also covers modded mounts)
         "faction": "Skyrim.esm|0x68D78",  // PlayerHorseFaction: horses you own
         "alive": true
       },
