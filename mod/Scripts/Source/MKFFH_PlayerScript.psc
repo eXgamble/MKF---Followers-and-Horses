@@ -9,11 +9,15 @@ EndEvent
 ; Mod event registrations are not saved: register again on every load
 Event OnPlayerLoadGame()
 	RegisterForEvents()
+	If AnyHorseFleeing()
+		RegisterForSingleUpdate(2.0)	; a save made mid-flee: restore the horse once the fight is over
+	EndIf
 EndEvent
 
 Function RegisterForEvents()
 	RegisterForModEvent("MKFFH_OpenInventory", "OnOpenInventory")
 	RegisterForModEvent("MKFFH_GivePotion", "OnGivePotion")
+	RegisterForModEvent("MKFFH_HorseCommand", "OnHorseCommand")
 EndFunction
 
 ; ==== Inventory (followers and your horses, modifier key held) ====
@@ -24,6 +28,100 @@ Event OnOpenInventory(String asEventName, String asRuleId, Float afIsAlternate, 
 		target.OpenInventory(True)
 	EndIf
 EndEvent
+
+; ==== Command: Flee / Command: Fight (your horse in combat, modifier key held) ====
+
+; A fleeing horse is Cowardly (Confidence 0) and Unaggressive (Aggression 0) until you order Fight
+; or your combat ends. Its own values are kept here (saved with the game) and put back exactly.
+Actor[] fleeingHorses
+Float[] savedConfidence
+Float[] savedAggression
+
+Event OnHorseCommand(String asEventName, String asRuleId, Float afIsAlternate, Form akTarget)
+	Actor horse = akTarget As Actor
+	If !horse || horse.IsDead()
+		Return
+	EndIf
+	Int slot = FindFleeingHorse(horse)
+	If slot >= 0
+		StopFleeing(slot)
+		Debug.Notification(horse.GetDisplayName() + " is ready to fight.")
+	Else
+		StartFleeing(horse)
+	EndIf
+EndEvent
+
+Function StartFleeing(Actor akHorse)
+	If !fleeingHorses
+		fleeingHorses = New Actor[5]
+		savedConfidence = New Float[5]
+		savedAggression = New Float[5]
+	EndIf
+	Int slot = FindFleeingHorse(None)
+	If slot < 0
+		Debug.Notification("Too many horses are already fleeing.")
+		Return
+	EndIf
+	fleeingHorses[slot] = akHorse
+	savedConfidence[slot] = akHorse.GetBaseActorValue("Confidence")
+	savedAggression[slot] = akHorse.GetBaseActorValue("Aggression")
+	akHorse.SetActorValue("Confidence", 0.0)
+	akHorse.SetActorValue("Aggression", 0.0)
+	akHorse.AddToFaction(FleeingFaction())
+	akHorse.EvaluatePackage()
+	Debug.Notification(akHorse.GetDisplayName() + " flees.")
+	RegisterForSingleUpdate(2.0)
+EndFunction
+
+; Back to the horse's own values
+Function StopFleeing(Int aiSlot)
+	Actor horse = fleeingHorses[aiSlot]
+	fleeingHorses[aiSlot] = None
+	If horse
+		horse.SetActorValue("Confidence", savedConfidence[aiSlot])
+		horse.SetActorValue("Aggression", savedAggression[aiSlot])
+		horse.RemoveFromFaction(FleeingFaction())
+		horse.EvaluatePackage()
+	EndIf
+EndFunction
+
+; Fleeing lasts while you're in combat
+Event OnUpdate()
+	If !Game.GetPlayer().IsInCombat()
+		Int i = 0
+		While fleeingHorses && i < fleeingHorses.Length
+			If fleeingHorses[i]
+				StopFleeing(i)
+			EndIf
+			i += 1
+		EndWhile
+	ElseIf AnyHorseFleeing()
+		RegisterForSingleUpdate(2.0)
+	EndIf
+EndEvent
+
+; The slot holding akHorse, or (akHorse None) a free slot; -1 if there is none
+Int Function FindFleeingHorse(Actor akHorse)
+	If !fleeingHorses
+		Return -1
+	EndIf
+	Return fleeingHorses.Find(akHorse)
+EndFunction
+
+Bool Function AnyHorseFleeing()
+	Int i = 0
+	While fleeingHorses && i < fleeingHorses.Length
+		If fleeingHorses[i]
+			Return True
+		EndIf
+		i += 1
+	EndWhile
+	Return False
+EndFunction
+
+Faction Function FleeingFaction()
+	Return Game.GetFormFromFile(0x802, "MKF - Followers and Horses.esp") As Faction	; MKFFH_FleeingFaction
+EndFunction
 
 ; ==== Give Potion / Give Restore Potion (a follower in combat) ====
 

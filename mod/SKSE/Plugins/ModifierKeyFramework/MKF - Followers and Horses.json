@@ -36,6 +36,33 @@
       "primary":   { "label": "$MKFFH_Ride" },
       "alternate": { "label": "$MKFFH_Inventory", "event": "MKFFH_OpenInventory" },
       "priority": 10
+    },
+    {
+      // your horse in combat: Command: Flee makes it cowardly until Fight or the end of your fight
+      "id": "horses-combat",
+      "target": "npc",
+      "requires": {
+        "keyword": "Skyrim.esm|0x26110",
+        "faction": "Skyrim.esm|0x68D78",
+        "alive": true,
+        "inCombat": true
+      },
+      "primary":   { "label": "$MKFFH_Ride" },
+      "alternate": { "label": "$MKFFH_CommandFlee", "event": "MKFFH_HorseCommand" },
+      "priority": 10
+    },
+    {
+      // a fleeing horse (MKFFH_FleeingFaction, only ever on your own horses): Command: Fight
+      "id": "horses-fleeing",
+      "target": "npc",
+      "requires": {
+        "keyword": "Skyrim.esm|0x26110",
+        "faction": "MKF - Followers and Horses.esp|0x802",
+        "alive": true
+      },
+      "primary":   { "label": "$MKFFH_Ride" },
+      "alternate": { "label": "$MKFFH_CommandFight", "event": "MKFFH_HorseCommand" },
+      "priority": 11
     }
   ]
 }
