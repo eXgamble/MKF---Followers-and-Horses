@@ -9,6 +9,7 @@ actions on your followers and your own horses, with Modifier Key Framework's key
 | A follower | `Talk +`: vanilla dialogue | `Inventory`: opens their inventory |
 | A follower in combat | `Give Potion +`: your cheapest healing potion | `Give Restore Potion`: your cheapest magicka or stamina potion, whichever they need most |
 | Your own horse | `Ride +`: vanilla riding | `Inventory`: opens its inventory |
+| Your own horse in combat | `Ride +`: vanilla riding | `Command: Flee`: it stops fighting and flees; `Command: Fight` calls it back |
 
 - The follower takes the potion and drinks it, with the drinking animation. A follower who doesn't
   need it keeps you the potion.
@@ -16,6 +17,8 @@ actions on your followers and your own horses, with Modifier Key Framework's key
   *Give Restore Potion* picks magicka or stamina by the lower percentage, and gives the other type
   if you carry none of the first.
 - Horses: only horses you own (bought or claimed), including modded mounts.
+- *Command: Flee* makes the horse cowardly until you order *Command: Fight* or your fight ends; its
+  own courage and aggression are then restored exactly. Don't uninstall the mod in the middle of a fight.
 - The modifier key is Modifier Key Framework's: Left Shift, or Left Shoulder on a gamepad, by default.
 
 ## Requirements
