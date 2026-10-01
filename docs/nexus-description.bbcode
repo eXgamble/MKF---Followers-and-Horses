@@ -1,0 +1,58 @@
+[center][size=6][b]MKF - Followers and Horses[/b][/size]
+[size=3]Heal your followers mid-fight, open their packs without dialogue, and tell your horse to run.
+One key, the vanilla prompt, no menus.[/size][/center]
+
+[size=5][b]What is this?[/b][/size]
+A small mod built on [url=https://www.nexusmods.com/skyrimspecialedition/mods/193566]Modifier Key Framework[/url]. It adds quick actions to your followers and your own horses: one when you activate normally, and a second one while you hold the framework's [b]modifier key[/b] (Left Shift, or Left Shoulder on a gamepad, by default).
+
+The prompt keeps the vanilla look, with the name underneath, and a small [b]+[/b] tells you a second action is there.
+
+[size=5][b]Features[/b][/size]
+[size=4][b]Followers[/b][/size]
+[list]
+[*][b]Talk +[/b] / hold the key: [b]Inventory[/b]. Open their inventory straight away, no dialogue menu.
+[*][b]In combat:[/b] [b]Give Potion +[/b]. They get your [b]cheapest healing potion[/b] and drink it on the spot, with the drinking animation. Your good potions stay in your pack.
+[*][b]In combat, hold the key:[/b] [b]Give Restore Potion[/b]. Your cheapest [b]magicka or stamina[/b] potion, whichever they need most. Out of that type? They get the other one, if it helps.
+[*]Never wasted: a follower who doesn't need the potion leaves it with you. Food, poisons and blood potions (unless your follower is a vampire) are never handed over.
+[/list]
+
+[size=4][b]Your horse[/b][/size]
+[list]
+[*][b]Ride +[/b] / hold the key: [b]Inventory[/b]. Use your horse as a pack animal.
+[*][b]In combat, hold the key:[/b] [b]Command: Flee[/b]. Your horse stops fighting and runs from danger. [b]Command: Fight[/b] calls it back, and once your fight is over it's back to its old self automatically.
+[*]Only horses you own (bought or claimed), including modded mounts. Other people's horses are left alone.
+[/list]
+
+[size=5][b]Requirements[/b][/size]
+[list]
+[*][url=https://skse.silverlock.org/]SKSE64[/url]
+[*][url=https://www.nexusmods.com/skyrimspecialedition/mods/32444]Address Library for SKSE Plugins[/url]
+[*][url=https://www.nexusmods.com/skyrimspecialedition/mods/193566]Modifier Key Framework[/url]
+[*][url=https://www.nexusmods.com/skyrimspecialedition/mods/22854]powerofthree's Papyrus Extender[/url]
+[/list]
+[b]Optional:[/b] [url=https://www.nexusmods.com/skyrimspecialedition/mods/74037]FormList Manipulator[/url], so CACO's blood potions are recognised as vampire-only too.
+
+Skyrim [b]Anniversary Edition[/b] (1.6.x, 1.7.x). One light plugin (ESL): no load order slot used. Safe to add mid-playthrough.
+
+[size=5][b]Compatibility[/b][/size]
+[list]
+[*][b]Death Timer - Immersive Bleedout:[/b] made to work together. A downed follower gets Death Timer's [i]Give Potion[/i] / [i]Search[/i]; everything else is this mod.
+[*][b]Follower frameworks:[/b] works with vanilla followers and frameworks that mark them as teammates (tested with Simple Follower Framework).
+[*][b]Mods that add actions through Dynamic Activation Key[/b] (e.g. "Pet" in Immersive Interactions or First Person Interactions): if DAK uses the same key, their action wins on the NPCs they affect. Give DAK a different key, or turn that option off in their MCM.
+[*][b]Uninstalling:[/b] fine at any time, just not in the middle of a fight while your horse is fleeing (it would stay cowardly).
+[/list]
+
+[size=5][b]Permissions and source[/b][/size]
+GPL-3.0-or-later. Source on [url=https://github.com/eXgamble/MKF---Followers-and-Horses]GitHub[/url].
+
+[size=5][b]Credits[/b][/size]
+[list]
+[*][b]Andrealletius[/b] ([url=https://www.nexusmods.com/skyrimspecialedition/mods/49240]Andrealletius' Bleedout Revamp[/url]): the vampire-only blood-potion filter and its CACO compatibility.
+[*][b]powerofthree[/b]: powerofthree's Papyrus Extender.
+[/list]
+
+[size=5][b]More from eXgamble[/b][/size]
+[list]
+[*][url=https://www.nexusmods.com/skyrimspecialedition/mods/193566]Modifier Key Framework[/url]: the framework behind this mod. Build your own actions with a JSON file.
+[*][url=DEATH_TIMER_URL]Death Timer - Immersive Bleedout[/url]: your followers can die, but you get a chance to save them first.
+[/list]
