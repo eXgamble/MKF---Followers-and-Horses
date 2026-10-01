@@ -40,3 +40,14 @@ mod/   the mod exactly as installed: plugin (ESL), scripts + source, rule file, 
 ```
 
 The author's MO2 mod folder is a directory junction to `mod/`.
+
+## License
+
+GPL-3.0-or-later. See [LICENSE](LICENSE).
+
+## Credits
+
+- **eXgamble**
+- **Andrealletius** ([Andrealletius' Bleedout Revamp](https://www.nexusmods.com/skyrimspecialedition/mods/49240)):
+  the vampire-only blood-potion filter and its CACO compatibility.
+- **powerofthree**: powerofthree's Papyrus Extender.
